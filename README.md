@@ -31,21 +31,7 @@ Introduction of some important function.
 
 ### Time Server
 
-```mermaid
-sequenceDiagram
-title: time server
-Note over server: bind()
-Note over server: lisetn()
-Note over server: accept()
-loop 
-  client->server: connect()
-  server->client: send(time)
-  note over client: recv()
-  note over server, client: close()
-end
-```
-
-
+![image-20210514222120038](https://raw.githubusercontent.com/Jechin/PicLib/main/image/image-20210514222120038.png)
 
 #### Server
 
@@ -55,7 +41,19 @@ end
 
 * 客户端接收信息时需要循环接收
 
+### Echoline
 
+![image-20210514223609695](https://raw.githubusercontent.com/Jechin/PicLib/main/image/image-20210514223609695.png)
+
+#### Server
+
+* 循环服务器
+* 接收到客户端发来的信息后根据'\n'字符进行切割
+* 将一行信息发送给客户端
+
+#### Client
+
+* 客户端接收信息时需要循环接收
 
 
 
