@@ -31,15 +31,18 @@ Introduction of some important function.
 
 ### Time Server
 
-```sequence
-Title: time server
+```mermaid
+sequenceDiagram
+title: time server
 Note over server: bind()
 Note over server: lisetn()
 Note over server: accept()
-client->server: connect()
-server->client: send(time)
-note over client: recv()
-note over server, client: close()
+loop 
+  client->server: connect()
+  server->client: send(time)
+  note over client: recv()
+  note over server, client: close()
+end
 ```
 
 
