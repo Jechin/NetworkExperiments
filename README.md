@@ -33,7 +33,7 @@ Introduction of some important function.
 
 * 服务器返回当前时间
 
-<img src="https://raw.githubusercontent.com/Jechin/PicLib/main/image/image-20210514222120038.png" alt="image-20210514222120038" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/Jechin/PicLib/main/image/image-20210514222120038.png" alt="image-20210514222120038" style="zoom: 33%;" />
 
 #### Server
 
