@@ -94,6 +94,25 @@ Introduction of some important function.
 * 两次发送数据，第一次发送信息长度，第二次发送信息主体
 * 发送信息长度时，注意主机字节序到网络字节序的转换
 
+### Fork
+
+实现服务器端的并发处理
+
+#### Server
+
+* Fork()可以复制一份主程序，即创建主进程的子进程，并在fork之后继续运行。
+* 在父进程中fork()函数将会返回子进程的pid
+* 而在子进程中fork()函数的返回值为0
+* 在程序中对fork的返回值进行判断
+  * 若为0，则是子进程，完成服务器的反射任务
+  * 若为1，则是父进程，该当进入下一轮的循环，调用accpet阻塞函数，等待下一个连接
+
+<img src="https://raw.githubusercontent.com/Jechin/PicLib/main/image/image-20210515195046177.png" alt="image-20210515195046177" width="500" />
+
+#### Client
+
+* 与循环服务器的相同，无需改动
+
 
 
 
