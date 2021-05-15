@@ -74,7 +74,25 @@ Introduction of some important function.
 
 * 使用定长接收数据
 
+### Echovaria
 
+* 客户端与服务器之间变长发送数据并回射
+* 变长数据接收并回射的实现
+  * 通过两次定长数据接收实现
+  * 第一次传送数据长度，第二次传送协商好数据长度的数据
+
+![image-20210515184702490](https://raw.githubusercontent.com/Jechin/PicLib/main/image/image-20210515184702490.png)
+
+#### server
+
+* 循环服务器
+* 两次定长接收数据
+* 在协商长度时，要注意主机字节序到网络字节序的转换
+
+#### client
+
+* 两次发送数据，第一次发送信息长度，第二次发送信息主体
+* 发送信息长度时，注意主机字节序到网络字节序的转换
 
 
 
