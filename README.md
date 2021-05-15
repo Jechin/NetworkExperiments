@@ -47,7 +47,7 @@ Introduction of some important function.
 
 * 服务器反射客户端发送的数据的一行
 
-![image-20210514223609695](https://raw.githubusercontent.com/Jechin/PicLib/main/image/image-20210514223609695.png)
+<img src="https://raw.githubusercontent.com/Jechin/PicLib/main/image/image-20210514223609695.png" alt="image-20210514223609695" width="500" />
 
 #### Server
 
@@ -63,7 +63,7 @@ Introduction of some important function.
 
 * 客户端发送数据，客户端反射定长数据
 
-![image-20210515173144728](https://raw.githubusercontent.com/Jechin/PicLib/main/image/image-20210515173144728.png)
+<img src="https://raw.githubusercontent.com/Jechin/PicLib/main/image/image-20210515173144728.png" alt="image-20210515173144728" width="500" />
 
 #### server
 
@@ -81,7 +81,7 @@ Introduction of some important function.
   * 通过两次定长数据接收实现
   * 第一次传送数据长度，第二次传送协商好数据长度的数据
 
-![image-20210515184702490](https://raw.githubusercontent.com/Jechin/PicLib/main/image/image-20210515184702490.png)
+<img src="https://raw.githubusercontent.com/Jechin/PicLib/main/image/image-20210515184702490.png" alt="image-20210515184702490" width="500" />
 
 #### server
 
