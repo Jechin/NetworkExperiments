@@ -31,6 +31,8 @@ Introduction of some important function.
 
 ### Time Server
 
+* 服务器返回当前时间
+
 ![image-20210514222120038](https://raw.githubusercontent.com/Jechin/PicLib/main/image/image-20210514222120038.png)
 
 #### Server
@@ -42,6 +44,8 @@ Introduction of some important function.
 * 客户端接收信息时需要循环接收
 
 ### Echoline
+
+* 服务器反射客户端发送的数据的一行
 
 ![image-20210514223609695](https://raw.githubusercontent.com/Jechin/PicLib/main/image/image-20210514223609695.png)
 
@@ -55,9 +59,20 @@ Introduction of some important function.
 
 * 客户端接收信息时需要循环接收
 
+### Echofix
 
+* 客户端发送数据，客户端反射定长数据
 
+![image-20210515173144728](https://raw.githubusercontent.com/Jechin/PicLib/main/image/image-20210515173144728.png)
 
+#### server
+
+* 循环服务器
+* 定长接收数据后，加上“echo”前缀反射给客户端
+
+#### client
+
+* 使用定长接收数据
 
 
 
