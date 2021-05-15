@@ -65,12 +65,12 @@ Introduction of some important function.
 
 <img src="https://raw.githubusercontent.com/Jechin/PicLib/main/image/image-20210515173144728.png" alt="image-20210515173144728" width="500" />
 
-#### server
+#### Server
 
 * 循环服务器
 * 定长接收数据后，加上“echo”前缀反射给客户端
 
-#### client
+#### Client
 
 * 使用定长接收数据
 
@@ -83,20 +83,20 @@ Introduction of some important function.
 
 <img src="https://raw.githubusercontent.com/Jechin/PicLib/main/image/image-20210515184702490.png" alt="image-20210515184702490" width="500" />
 
-#### server
+#### Server
 
 * 循环服务器
 * 两次定长接收数据
 * 在协商长度时，要注意主机字节序到网络字节序的转换
 
-#### client
+#### Client
 
 * 两次发送数据，第一次发送信息长度，第二次发送信息主体
 * 发送信息长度时，注意主机字节序到网络字节序的转换
 
 ### Fork
 
-实现服务器端的并发处理
+使用**多进程**实现服务器端的并发处理
 
 #### Server
 
@@ -113,7 +113,34 @@ Introduction of some important function.
 
 * 与循环服务器的相同，无需改动
 
+### Thread
 
+使用多线程实现服务器端的并发处理
+
+#### pthread_create
+
+```c++
+int pthread_create(pthread_t *restrict tidp, const pthread_attr_t *restrict_attr, void*（*start_rtn)(void*), void *restrict arg);
+```
+
+* Param 
+  * tidp: 执行线程标识符的指针
+  * restrict_attr: 线程属性，可取NULL
+  * start_rtn: 线程函数指针
+  * arg: 传递给线程函数的参数
+
+#### Server
+
+* 使用`pthread_create()`函数来创建子线程
+* 要注意传递给线程函数的参数类型为`void*`类型，在TCP线程并发服务器中，需要传递的参数为连接套接字socket，其类型为`int`
+  * 因此需要在调用`pthread_create()`时强制转换类型
+  * 在线程函数中要将变量强制转换类型为`int`才能作为套接字使用
+
+<img src="https://raw.githubusercontent.com/Jechin/PicLib/main/image/image-20210515210200789.png" alt="image-20210515210200789" width="500" />
+
+#### Client
+
+* 与循环服务器的相同，无需改动
 
 
 
