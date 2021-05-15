@@ -107,6 +107,24 @@ Introduction of some important function.
   * 若为0，则是子进程，完成服务器的反射任务
   * 若为1，则是父进程，该当进入下一轮的循环，调用accpet阻塞函数，等待下一个连接
 
+```flow
+start=>start: server start
+end=>end: server end
+bind=>operation: bind()
+listen=>operation: listen()
+accept=>operation: accept()
+fork=>operation: pid = fork()
+cond=>condition: pid == 0
+close=>operation: close sock
+
+recv=>operation: recv and echo
+
+start->bind->listen->accept->fork
+fork->cond
+cond(yes)->recv->close(left)->accept
+cond(no)->accept
+```
+
 <img src="https://raw.githubusercontent.com/Jechin/PicLib/main/image/image-20210515195046177.png" alt="image-20210515195046177" width="500" />
 
 #### Client
