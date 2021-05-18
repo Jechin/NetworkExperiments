@@ -180,7 +180,7 @@ int pthread_create(pthread_t *restrict tidp, const pthread_attr_t *restrict_attr
 
 服务器端实现简单的客户端信息反射
 
-![image-20210518092803702](https://raw.githubusercontent.com/Jechin/PicLib/main/image/image-20210518092803702.png)
+<img src="https://raw.githubusercontent.com/Jechin/PicLib/main/image/image-20210518092803702.png" alt="image-20210518092803702" width="500" />
 
 #### Server
 
@@ -191,6 +191,50 @@ int pthread_create(pthread_t *restrict tidp, const pthread_attr_t *restrict_attr
 #### Client
 
 * 客户端的`recvfrom`函数中的发送方地址参数`to`不能指定发送方，而是会在收到数据报后更新地址
+
+### Concurrent
+
+使用pthread实现服务器端的并发处理
+
+#### Server
+
+* 相较于TCP基于pthread的并发实现，UDP的实现大致相同，区别在于UDP的线程函数的参数传递更加复杂
+
+* UDP线程函数的参数需要包涵：新线程的通讯端口，发送方客户端的地址，发送方第一次发来的数据
+
+* 但是`pthread_create`函数中参数传递只有一个`void *`类型的参数
+
+* 因此构造线程函数的参数结构体
+
+* ```c++
+  typedef struct thread_argv
+  {
+      int port;
+      char buff[MAXLINE];
+      struct sockaddr_in sock_address;
+  } thread_argv;
+  ```
+
+* 要注意线程函数参数传递前的类型转换
+
+* 在线程函数中对参数进行类型转换获取以上信息
+
+<img src="https://raw.githubusercontent.com/Jechin/PicLib/main/image/image-20210518102456568.png" alt="image-20210518102456568" width="500" />
+
+#### Client
+
+* 与循环服务器的相同，无需改动
+* 客户端调用`recvfrom`后会更新客户端的地址，之后如需继续喝客户端进行通讯，需要使用该新的地址
+
+
+
+
+
+
+
+
+
+
 
 
 
