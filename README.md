@@ -9,23 +9,55 @@ Introduction of some important function.
 
 #### send()
 
-* int send( SOCKET s,char *buf,int len,int flags );
+```c++
+int send(SOCKET s, char *buf, int len, int flags);
+```
 
-* Send 函数的实际功能并不是发送数据
-* 实际功能：将用户缓冲区buf中的数据拷贝至内核的发送缓冲区
+* `send` 函数的实际功能并不是发送数据
+* 实际功能：将用户缓冲区`buf`中的数据拷贝至内核的发送缓冲区
 * 数据在网络中的发送和传输是由协议完成的（对程序员不可见）
 
 #### recv()
 
-* int recv( SOCKET s, char *buf, int  len, int flags)
-* recv函数的功能也不是接收数据
-* 实际功能：从内核接受缓冲区中将长度为len的数据拷贝至用户缓冲区buf
+```c++
+int recv( SOCKET s, char *buf, int  len, int flags)
+```
+
+
+
+* `recv`函数的功能也不是接收数据
+* 实际功能：从内核接受缓冲区中将长度为`len`的数据拷贝至用户缓冲区`buf`
 * 数据的接收是由协议完成的
 
 #### summary
 
-* 因为send和recv函数的上述特性，send和recv函数不是一一对应的
-* 因此在流式套接字编程中调用send和recv函数接收数据时，需要循环接收数据
+* 因为`send`和`recv`函数的上述特性，`send`和`recv`函数不是一一对应的
+* 因此在流式套接字编程中调用`send`和`recv`函数接收数据时，需要循环接收数据
+
+### UDP
+
+#### sendto()
+
+```c++
+int sendto (int s, const void *buf, int len, unsigned int flags, const struct sockaddr *to, int tolen);
+```
+
+* sendto函数实现将`buf`中的内容拷贝内核缓冲区
+* 向`to `地址(IP地址和端口信息)发送buf中的内容
+
+#### recvfrom()
+
+```c++
+int recvfrom(int s, void *buf, int len, unsigned int flags, struct sockaddr *from, int *fromlen);
+```
+
+* `recvfrom`函数实现无连接的接收数据报
+* 同时发送方的IP地址和端口信息会被复制到`from`中
+
+#### summary
+
+* 对于数据报类套接口，必需注意发送数据长度不应超过通讯子网的IP包最大长度
+* 相较于TCP流式套接字的传输，UDP套接字的传输在不超过通讯子网的最大长度的情况下，`sendto`和`recvfrom`基本是一一对应的
 
 ## TCP
 
@@ -142,7 +174,23 @@ int pthread_create(pthread_t *restrict tidp, const pthread_attr_t *restrict_attr
 
 * 与循环服务器的相同，无需改动
 
+## UDP
 
+### Echo
+
+服务器端实现简单的客户端信息反射
+
+![image-20210518092803702](https://raw.githubusercontent.com/Jechin/PicLib/main/image/image-20210518092803702.png)
+
+#### Server
+
+* 使用循环服务器
+* 接收数据后，加上“echo”前缀反射给客户端
+* `recvfrom`在接收到数据后，`from`也被更新，发送数据时要以`from`为目的地址
+
+#### Client
+
+* 客户端的`recvfrom`函数中的发送方地址参数`to`不能指定发送方，而是会在收到数据报后更新地址
 
 
 
