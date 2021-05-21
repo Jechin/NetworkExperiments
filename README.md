@@ -207,14 +207,13 @@ int pthread_create(pthread_t *restrict tidp, const pthread_attr_t *restrict_attr
 * 因此构造线程函数的参数结构体
 
 * ```c++
-  typedef struct thread_argv
-  {
+  typedef struct thread_argv {
       int port;
       char buff[MAXLINE];
       struct sockaddr_in sock_address;
   } thread_argv;
   ```
-
+  
 * 要注意线程函数参数传递前的类型转换
 
 * 在线程函数中对参数进行类型转换获取以上信息
@@ -226,11 +225,24 @@ int pthread_create(pthread_t *restrict tidp, const pthread_attr_t *restrict_attr
 * 与循环服务器的相同，无需改动
 * 客户端调用`recvfrom`后会更新客户端的地址，之后如需继续喝客户端进行通讯，需要使用该新的地址
 
+### LoseRate
+
+主要使用`setsockopt`函数设置不同套接字的参数，来计算不同情况下的udp传输的丢包率。
+
+构造服务器和客户端协商的套接字参数数据结构
+
+```c++
+typedef struct set {
+    int times;
+    int datasize;
+    int buffsize;
+    int recvspeed;
+} set;
+```
 
 
 
-
-
+<img src="https://raw.githubusercontent.com/Jechin/PicLib/main/image/image-20210522004208050.png" alt="image-20210522004208050" width="500" />
 
 
 
